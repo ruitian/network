@@ -26,9 +26,7 @@ public class CompanyDao {
 
             String sql = "select * from company" + ";";
             rs = stmt.executeQuery(sql);
-            int sum = 0;
             while (rs.next()) {
-                sum++;
                 str = str + "<tr><td>" + rs.getString("com_name")+ "</td><td>" +
                         rs.getString("com_desc") + "</td></tr>";
             }

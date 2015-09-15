@@ -29,7 +29,7 @@ public class SqlCon {
 
         try {
             sqlcon.getCon();
-
+ 
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

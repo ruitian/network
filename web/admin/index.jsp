@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="lib.Model.User" %>
+<%@ page import="lib.Dao.AdminDao" %>
 <%--
   Created by IntelliJ IDEA.
   User: baron
@@ -42,7 +43,10 @@
                 <div role="tabpanel" class="tab-pane active" id="home">
                     当前用户是${currentUser.username} 权限为${currentUser.level}
                 </div>
-                <div role="tabpanel" class="tab-pane" id="profile"></div>
+                <div role="tabpanel" class="tab-pane" id="profile">
+                    <% AdminDao adminDao = new AdminDao(); %>
+                    <%=adminDao.getUser()%>
+                </div>
                 <div role="tabpanel" class="tab-pane" id="messages">...</div>
                 <div role="tabpanel" class="tab-pane" id="settings">...</div>
             </div>
