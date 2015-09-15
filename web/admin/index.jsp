@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="lib.Model.User" %>
 <%--
   Created by IntelliJ IDEA.
@@ -24,27 +25,37 @@
     return;
   }
 %>
-<h3></h3>
-<div class="container">
-    <div>
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">个人资料</a></li>
-            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">用户管理</a></li>
-            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-            <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
-        </ul>
+<c:if test="${currentUser.level == 2}">
+    <h3></h3>
+    <div class="container">
+        <div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">个人资料</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">用户管理</a></li>
+                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+                <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+            </ul>
 
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="home">
-                当前用户是${currentUser.username} 权限为${currentUser.level}
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    当前用户是${currentUser.username} 权限为${currentUser.level}
+                </div>
+                <div role="tabpanel" class="tab-pane" id="profile"></div>
+                <div role="tabpanel" class="tab-pane" id="messages">...</div>
+                <div role="tabpanel" class="tab-pane" id="settings">...</div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="profile"></div>
-            <div role="tabpanel" class="tab-pane" id="messages">...</div>
-            <div role="tabpanel" class="tab-pane" id="settings">...</div>
         </div>
     </div>
-</div>
+</c:if>
+
+<c:if test="${currentUser.level == 0}">
+    <% response.sendRedirect("../customer/index.jsp");%>
+</c:if>
+<c:if test="${currentUser.level == 1}">
+    <% response.sendRedirect("../company/index.jsp");%>
+</c:if>
+
 </body>
 </html>

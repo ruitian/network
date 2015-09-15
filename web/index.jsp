@@ -61,8 +61,6 @@
                 <% User currentUser = (User)session.getAttribute("currentUser");
                     if (currentUser != null) { %>
 
-
-
                 <c:if test="${currentUser.level == 0}">
                     <li><a href="customer/index.jsp">欢迎${currentUser.username}</a></li>
                 </c:if>

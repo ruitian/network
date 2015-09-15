@@ -25,6 +25,12 @@
     }
   %>
 <h3>当前用户是${currentUser.username} 权限为${currentUser.level}</h3>
-<a >
+  <c:if test="${currentUser.level == 0}"><h3>当前用户是${currentUser.username} 权限为${currentUser.level}</h3></c:if>
+  <c:if test="${currentUser.level == 1}">
+      <% response.sendRedirect("../company/index.jsp");%>
+  </c:if>
+  <c:if test="${currentUser.level == 2}">
+      <% response.sendRedirect("../admin/index.jsp");%>
+  </c:if>
 </body>
 </html>
