@@ -1,5 +1,6 @@
 package lib.Dao;
 
+import lib.Model.Customer;
 import lib.Model.User;
 
 import java.sql.Connection;
@@ -13,7 +14,7 @@ public class Userdao {
     public User login(Connection con, User user) throws SQLException {
         User resultUser = null;
         PreparedStatement pst = null;
-
+        System.out.print(user.getUsername() + user.getPassword());
         try {
             String sql = "select * from user where phone=? and password=?";
             pst = con.prepareStatement(sql);
@@ -22,9 +23,11 @@ public class Userdao {
             ResultSet rs= pst.executeQuery(); //向下遍历
 
             if (rs.next()) {
-                resultUser = new User();
+                resultUser = new Customer();
+                resultUser.setUsername(rs.getString("username"));
                 resultUser.setPhone(rs.getString("phone"));
                 resultUser.setPassword(rs.getString("password"));
+                resultUser.setLevel(rs.getString("level"));
             }
             return resultUser;
         } catch (Exception e) {
@@ -36,12 +39,11 @@ public class Userdao {
     public User register(Connection con, User user) throws SQLException{
         PreparedStatement pst = null;
         try {
-            String sql = "insert into user (username, sex, phone, password) values (?,?,?,?)";
+            String sql = "insert into user (username, phone, password) values (?,?,?)";
             pst = con.prepareStatement(sql);
             pst.setString(1, user.getUsername());
-            pst.setString(2, user.getSex());
-            pst.setString(3, user.getPhone());
-            pst.setString(4, user.getPassword());
+            pst.setString(2, user.getPhone());
+            pst.setString(3, user.getPassword());
 
             pst.executeUpdate();
         } catch (Exception e) {
