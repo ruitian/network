@@ -2,6 +2,7 @@ package lib.servlet;
 
 import com.sun.org.apache.bcel.internal.generic.NEW;
 import lib.Dao.Userdao;
+import lib.Model.Customer;
 import lib.Model.User;
 import lib.Dao.SqlCon;
 
@@ -44,7 +45,7 @@ public class Loginservlet extends HttpServlet{
             return;
         }
 
-        User user = new User(phone, password);
+        User user = new Customer(phone, password);
         Connection con = null;
 
         try {

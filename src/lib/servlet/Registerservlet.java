@@ -2,6 +2,7 @@ package lib.servlet;
 
 import lib.Dao.SqlCon;
 import lib.Dao.Userdao;
+import lib.Model.Customer;
 import lib.Model.User;
 
 import javax.servlet.ServletException;
@@ -28,16 +29,31 @@ public class Registerservlet extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String username = req.getParameter("username");
+        String username = new String(req.getParameter("username").getBytes("ISO-8859-1"), "UTF-8");
         String sex = new String(req.getParameter("sex").getBytes("ISO-8859-1"), "UTF-8");
         String phone = new String(req.getParameter("phone").getBytes("ISO-8859-1"), "UTF-8");
         String password = new String(req.getParameter("password").getBytes("ISO-8859-1"), "UTF-8");
 
-        User user = new User();
+        //判断输入数据
+        if(username.isEmpty() || phone.isEmpty()) {
+            if(username.isEmpty()){
+                req.setAttribute("error_name", "姓名不能为空");
+            }
+            if (phone.isEmpty()) {
+                req.setAttribute("error_phone", "手机号不能为空");
+            }
+            req.getRequestDispatcher("register.jsp").forward(req, resp);
+        }
+        if(phone.length() != 11) {
+            req.setAttribute("error_phone", "手机号为11位");
+            req.getRequestDispatcher("register.jsp").forward(req, resp);
+        }
+
+        User user = new Customer();
         Connection con = null;
 
         user.setUsername(username);
-        user.setSex(sex);
+        ((Customer)user).setSex(sex);
         user.setPhone(phone);
         user.setPassword(password);
 
