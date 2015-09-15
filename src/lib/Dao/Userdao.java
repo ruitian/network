@@ -32,4 +32,21 @@ public class Userdao {
         }
         return resultUser;
     }
+
+    public User register(Connection con, User user) throws SQLException{
+        PreparedStatement pst = null;
+        try {
+            String sql = "insert into user (username, sex, phone, password) values (?,?,?,?)";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, user.getUsername());
+            pst.setString(2, user.getSex());
+            pst.setString(3, user.getPhone());
+            pst.setString(4, user.getPassword());
+
+            pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

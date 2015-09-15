@@ -1,9 +1,14 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="lib.Model.User" %>
+<%@ page import="lib.Dao.CompanyDao" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>首页|网上招聘系统</title>
     <link href="static/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="static/css/style.css"/>
+    <link rel="stylesheet" href="static/css/flat-ui.min.css"/>
     <script src="static/js/juqery.js"></script>
     <script src="static/js/bootstrap.min.js"></script>
 </head>
@@ -53,9 +58,25 @@
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Link</a></li>
+                <% User currentUser = (User)session.getAttribute("currentUser");
+                    if (currentUser != null) { %>
+
+
+
+                <c:if test="${currentUser.level == 0}">
+                    <li><a href="customer/index.jsp">欢迎${currentUser.username}</a></li>
+                </c:if>
+                <c:if test="${currentUser.level == 1}">
+                    <li><a href="company/index.jsp">欢迎${currentUser.username}</a></li>
+                </c:if>
+                <c:if test="${currentUser.level == 2}">
+                    <li><a href="admin/index.jsp">欢迎${currentUser.username}</a></li>
+                </c:if>
+
+                <li><a href="logout.jsp">注销</a></li>
+                <% } %>
                 <%
-                    if (session.getAttribute("currentUser") == null) {
+                    if (currentUser == null) {
                 %>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心<span class="caret"></span></a>
@@ -69,6 +90,10 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-<h1>Hello, Welcome sign in this web site!</h1>
+<% CompanyDao companyDao = new CompanyDao();%>
+<h2>
+    <%=companyDao.companylist()%>
+</h2>
+
 </body>
 </html>

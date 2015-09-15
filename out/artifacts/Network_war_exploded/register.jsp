@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: baron
-  Date: 15-9-11
-  Time: 上午8:59
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -19,22 +12,33 @@
   <form class="col-md-6 col-md-offset-3" action="register" method="post">
     <div class="form-group">
       <label for="exampleInputName2">Name</label>
-      <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+      <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe" name="username">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputName2">Name</label>
+      <input type="text" class="form-control" id="exampleInputName2" placeholder="" name="sex">
     </div>
     <div class="form-group">
       <label for="exampleInputEmail2">Phone Number</label>
-      <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Phone Number">
+      <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Phone Number" name="phone">
     </div>
     <div class="form-group">
       <label for="exampleInputEmail2">Password</label>
-      <input type="password" class="form-control" id="exampleInputEmail2" placeholder="Password">
+      <input type="password" class="form-control" id="exampleInputEmail2" placeholder="Password" name="password">
     </div>
     <div class="form-group">
       <label for="exampleInputEmail2">Varify Password</label>
-      <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Password">
+      <input type="password" class="form-control" id="exampleInputEmail2" placeholder="Password" name="password1">
     </div>
     <button type="submit" class="btn btn-default">注册</button>
   </form>
 </div>
+
+<script>
+  function validate() {
+    var passwd1 = document.getElementById("password");
+    var passwd2 = document.getElementById("password1");
+  }
+</script>
 </body>
 </html>

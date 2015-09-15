@@ -4,6 +4,7 @@
     <title>首页|网上招聘系统</title>
     <link href="static/css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="static/css/style.css"/>
+    <link rel="stylesheet" href="static/css/flat-ui.min.css"/>
     <script src="static/js/juqery.js"></script>
     <script src="static/js/bootstrap.min.js"></script>
 </head>
@@ -53,7 +54,7 @@
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Link</a></li>
+                <li><a href="logout.jsp">注销</a></li>
                 <%
                     if (session.getAttribute("currentUser") == null) {
                 %>

@@ -33,8 +33,8 @@ public class Loginservlet extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String phone = req.getParameter("phone");
-        String password = req.getParameter("password");
+        String phone = new String(req.getParameter("phone").getBytes("ISO-8859-1"), "UTF-8");
+        String password = new String(req.getParameter("password").getBytes("ISO-8859-1"), "UTF-8");
         req.setAttribute("phone", phone);
         req.setAttribute("password", password);
 
