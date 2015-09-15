@@ -1,5 +1,6 @@
 package lib.Model;
 
+import javax.swing.*;
 import java.security.PrivateKey;
 import java.util.PriorityQueue;
 import java.util.ResourceBundle;
@@ -8,11 +9,11 @@ import java.util.StringTokenizer;
 /**
  * Created by baron on 15-9-10.
  */
-public class User {
+public abstract class User {
     private String password;
     private String phone;
     private String username;
-    private String sex;
+    private String level;
 
     public User() {
         super();
@@ -22,7 +23,6 @@ public class User {
         this.username = username;
         this.password = password;
         this.phone = phone;
-        this.sex = sex;
     }
 
     public User(String phone, String password) {
@@ -42,9 +42,6 @@ public class User {
         return username;
     }
 
-    public String getSex() {
-        return sex;
-    }
 
 
     public void setPassword(String password) {
@@ -59,8 +56,11 @@ public class User {
         this.username = username;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public String getLevel() {
+        return level;
     }
 
+    public void setLevel(String level) {
+        this.level = level;
+    }
 }
