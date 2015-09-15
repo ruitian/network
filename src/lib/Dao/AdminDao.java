@@ -1,3 +1,4 @@
+
 package lib.Dao;
 
 import java.sql.Statement;
@@ -14,7 +15,7 @@ public class AdminDao {
         SqlCon sqlcon = new SqlCon();
         Connection con = null;
         ResultSet rs = null;
-        String str = "<table class=\"table table-bordered\">" +
+        String str = "<table class=\"table table-bordered\" id=\"outside\">" +
                 "<tr><td>用户姓名</td><td>手机号</td><td>密码</td><td>角色</td></tr>";
         try {
             con = sqlcon.getCon();
@@ -22,8 +23,9 @@ public class AdminDao {
             String sql = "select * from user" + ";";
             rs = stmt.executeQuery(sql);
             while(rs.next()) {
-                str = str + "<tr><td>" + rs.getString("username") + "</td><td>" + rs.getString("phone") +
-                        "</td><td>" + rs.getString("password") + "</td><td>" + rs.getString("level") + "</td></tr>";
+                str = str + "<tr data_id=\"" + rs.getString("id") + "\"><td>" + rs.getString("username") + "</td><td>" + rs.getString("phone") +
+                        "</td><td>" + rs.getString("password") + "</td><td>" + rs.getString("level") + "</td><td>" +
+                "<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModal\">编辑</button></td>"  ;
             }
             return str + "</table>";
 

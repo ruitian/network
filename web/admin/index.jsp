@@ -44,7 +44,7 @@
                     当前用户是${currentUser.username} 权限为${currentUser.level}
                 </div>
                 <div role="tabpanel" class="tab-pane" id="profile">
-                    <% AdminDao adminDao = new AdminDao(); %>
+                    <% AdminDao adminDao = new AdminDao();%>
                     <%=adminDao.getUser()%>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="messages">...</div>
@@ -60,6 +60,62 @@
 <c:if test="${currentUser.level == 1}">
     <% response.sendRedirect("../company/index.jsp");%>
 </c:if>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">更改用户资料</h4>
+            </div>
+            <div class="modal-body">
+                <form action="edit" method="post">
+                    <input type="hidden" id="dataid" value=""/>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">用户名</label>
+                        <input type="text" class="form-control" id="recipient-name" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="control-label">手机</label>
+                        <input class="form-control" id="message-text"></input>
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="control-label">密码</label>
+                        <input class="form-control" id="message-text"></input>
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="control-label">角色</label>
+                        <select class="form-control" name="" id="">
+                            <option value="0">普通会员</option>
+                            <option value="1">公司会员</option>
+                            <option value="2">管理员</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">提交</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function getDataid(e) {
+    console.log(e.target);
+    console.log(e.target.parentNode.parentNode.getAttribute('data_id'));
+//    console.log(e.target.parentNode.parentNode.firstChild.nodeValue);
+    var dataid = e.target.parentNode.parentNode.getAttribute('data_id');
+//    var obj = {
+//        id: dataid,
+//        username:
+//    }
+    document.getElementById("dataid").value = dataid;
+}
+var el = document.getElementById("outside");
+el.addEventListener("click", getDataid.bind(this), false);
+</script>
 
 </body>
 </html>
