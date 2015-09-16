@@ -23,8 +23,8 @@ public class AdminDao {
             String sql = "select * from user" + ";";
             rs = stmt.executeQuery(sql);
             while(rs.next()) {
-                str = str + "<tr data_id=\"" + rs.getString("id") + "\"><td>" + rs.getString("username") + "</td><td>" + rs.getString("phone") +
-                        "</td><td>" + rs.getString("password") + "</td><td>" + rs.getString("level") + "</td><td>" +
+                str = str + "<tr data_id=\"" + rs.getString("id") + "\"><td username=\""+ rs.getString("username") + "\"/>" + rs.getString("username") + "</td><td phone=\"" + rs.getString("phone") + "\"/>" + rs.getString("phone") +
+                        "</td><td password=\"" + rs.getString("password") +"\"/>" + rs.getString("password") + "</td><td level=\"" + rs.getString("level") + "\"/>" + rs.getString("level") + "</td><td>" +
                 "<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModal\">编辑</button></td>"  ;
             }
             return str + "</table>";

@@ -73,19 +73,19 @@
                     <input type="hidden" id="dataid" value=""/>
                     <div class="form-group">
                         <label for="recipient-name" class="control-label">用户名</label>
-                        <input type="text" class="form-control" id="recipient-name" value="">
+                        <input type="text" name="" class="form-control" id="username">
                     </div>
                     <div class="form-group">
-                        <label for="message-text" class="control-label">手机</label>
-                        <input class="form-control" id="message-text"></input>
+                        <label for="message-text" name="phone" class="control-label">手机</label>
+                        <input class="form-control" id="phone"></input>
                     </div>
                     <div class="form-group">
-                        <label for="message-text" class="control-label">密码</label>
-                        <input class="form-control" id="message-text"></input>
+                        <label for="message-text" name="password" class="control-label">密码</label>
+                        <input class="form-control" id="password"></input>
                     </div>
                     <div class="form-group">
                         <label for="message-text" class="control-label">角色</label>
-                        <select class="form-control" name="" id="">
+                        <select class="form-control" name="level" id="level">
                             <option value="0">普通会员</option>
                             <option value="1">公司会员</option>
                             <option value="2">管理员</option>
@@ -103,15 +103,20 @@
 
 <script>
 function getDataid(e) {
-    console.log(e.target);
     console.log(e.target.parentNode.parentNode.getAttribute('data_id'));
-//    console.log(e.target.parentNode.parentNode.firstChild.nodeValue);
+    var username = e.target.parentNode.parentNode.childNodes.item(0).getAttribute("username");
+    var phone = e.target.parentNode.parentNode.childNodes.item(1).getAttribute("phone");
+    var password = e.target.parentNode.parentNode.childNodes.item(2).getAttribute("password");
+    var level = e.target.parentNode.parentNode.childNodes.item(3).getAttribute("level");
+
     var dataid = e.target.parentNode.parentNode.getAttribute('data_id');
-//    var obj = {
-//        id: dataid,
-//        username:
-//    }
+
     document.getElementById("dataid").value = dataid;
+    document.getElementById("username").value = username;
+    document.getElementById("phone").value = phone;
+    document.getElementById("password").value = password;
+    document.getElementById("level").value = level;
+
 }
 var el = document.getElementById("outside");
 el.addEventListener("click", getDataid.bind(this), false);
