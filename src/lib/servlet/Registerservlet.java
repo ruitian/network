@@ -2,7 +2,6 @@ package lib.servlet;
 
 import lib.Dao.SqlCon;
 import lib.Dao.Userdao;
-import lib.Model.Customer;
 import lib.Model.User;
 
 import javax.servlet.ServletException;

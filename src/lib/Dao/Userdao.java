@@ -1,5 +1,6 @@
 package lib.Dao;
 
+import lib.Model.Apply;
 import lib.Model.Customer;
 import lib.Model.User;
 
@@ -19,10 +20,11 @@ public class Userdao {
             pst = con.prepareStatement(sql);
             pst.setString(1, user.getPhone());
             pst.setString(2, user.getPassword());
-            ResultSet rs= pst.executeQuery(); //向下遍历
+            ResultSet rs = pst.executeQuery(); //向下遍历
 
             if (rs.next()) {
                 resultUser = new Customer();
+                resultUser.setDataid(rs.getString("id"));
                 resultUser.setUsername(rs.getString("username"));
                 resultUser.setPhone(rs.getString("phone"));
                 resultUser.setPassword(rs.getString("password"));
@@ -35,7 +37,7 @@ public class Userdao {
         return resultUser;
     }
 
-    public User register(Connection con, User user) throws SQLException{
+    public User register(Connection con, User user) throws SQLException {
         PreparedStatement pst = null;
 
         try {
@@ -54,7 +56,6 @@ public class Userdao {
 
     public User edit(Connection con, User user) throws SQLException {
         PreparedStatement pst = null;
-
         try {
             String sql = "update user set username=?, phone=?, password=?, role=? where id=?" + ";";
             pst = con.prepareStatement(sql);
@@ -63,6 +64,23 @@ public class Userdao {
             pst.setString(3, user.getPassword());
             pst.setString(4, user.getRole());
             pst.setString(5, user.getDataid());
+            pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Apply apply(Connection con, Apply user) throws SQLException {
+        PreparedStatement pst = null;
+        try {
+            String sql = "insert into applymess (apply_id, apply_username, apply_mess, role) values (?,?,?,?)";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, user.getDataid());
+            pst.setString(2, user.getApply_username());
+            pst.setString(3, user.getApply_mess());
+            pst.setString(4, user.getRole());
+
             pst.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

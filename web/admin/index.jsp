@@ -32,20 +32,22 @@
         <div>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">个人资料</a></li>
-                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">用户管理</a></li>
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">用户管理</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">个人资料</a></li>
                 <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
                 <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+                <li role="presentation"><a href="../index.jsp">返回首页</a></li>
+
             </ul>
 
             <!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="home">
-                    当前用户是${currentUser.username} 权限为${currentUser.role}
-                </div>
-                <div role="tabpanel" class="tab-pane" id="profile">
                     <% AdminDao adminDao = new AdminDao();%>
                     <%=adminDao.getUser()%>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="profile">
+                    当前用户是${currentUser.username} 权限为${currentUser.role}
                 </div>
                 <div role="tabpanel" class="tab-pane" id="messages">...</div>
                 <div role="tabpanel" class="tab-pane" id="settings">...</div>
@@ -76,7 +78,7 @@
                         <input type="text" name="username" class="form-control" id="username">
                     </div>
                     <div class="form-group">
-                        <label for="phone" n class="control-label">手机</label>
+                        <label for="phone" class="control-label">手机</label>
                         <input name="phone" class="form-control" id="phone">
                     </div>
                     <div class="form-group">
@@ -122,15 +124,15 @@ var el = document.getElementById("outside");
 el.addEventListener("click", getDataid.bind(this), false);
 </script>
 
+<%--删除用户的ajax--%>
 <script>
     var dataid = null;
-function deleteData(e) {
-    dataid = e.target.parentNode.parentNode.getAttribute('data_id');
-    $.getJSON('de')
-}
-var el = document.getElementById("outside");
+    function deleteData(e) {
+        dataid = e.target.parentNode.parentNode.getAttribute('data_id');
+    }
+    var el = document.getElementById("outside");
 el.addEventListener("click", deleteData.bind(this), false);
 </script>
-
+<%--end--%>
 </body>
 </html>

@@ -70,6 +70,9 @@
                 <c:if test="${currentUser.role == 2}">
                     <li><a href="admin/index.jsp">欢迎${currentUser.username}</a></li>
                 </c:if>
+                <c:if test="${currentUser.role == 4}">
+                    <li><a href="apply.jsp">查看通知</a></li>
+                </c:if>
 
                 <li><a href="logout.jsp">注销</a></li>
                 <% } %>
