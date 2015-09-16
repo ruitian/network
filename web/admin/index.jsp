@@ -26,7 +26,7 @@
     return;
   }
 %>
-<c:if test="${currentUser.level == 2}">
+<c:if test="${currentUser.role == 2}">
     <h3></h3>
     <div class="container">
         <div>
@@ -41,7 +41,7 @@
             <!-- Tab panes -->
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="home">
-                    当前用户是${currentUser.username} 权限为${currentUser.level}
+                    当前用户是${currentUser.username} 权限为${currentUser.role}
                 </div>
                 <div role="tabpanel" class="tab-pane" id="profile">
                     <% AdminDao adminDao = new AdminDao();%>
@@ -54,10 +54,10 @@
     </div>
 </c:if>
 
-<c:if test="${currentUser.level == 0}">
+<c:if test="${currentUser.role == 0}">
     <% response.sendRedirect("../customer/index.jsp");%>
 </c:if>
-<c:if test="${currentUser.level == 1}">
+<c:if test="${currentUser.role == 1}">
     <% response.sendRedirect("../company/index.jsp");%>
 </c:if>
 
@@ -70,22 +70,22 @@
             </div>
             <div class="modal-body">
                 <form action="edit" method="post">
-                    <input type="hidden" id="dataid" value=""/>
+                    <input type="hidden" name="dataid" id="dataid" value=""/>
                     <div class="form-group">
-                        <label for="recipient-name" class="control-label">用户名</label>
-                        <input type="text" name="" class="form-control" id="username">
+                        <label for="username" class="control-label">用户名</label>
+                        <input type="text" name="username" class="form-control" id="username">
                     </div>
                     <div class="form-group">
-                        <label for="message-text" name="phone" class="control-label">手机</label>
-                        <input class="form-control" id="phone"></input>
+                        <label for="phone" n class="control-label">手机</label>
+                        <input name="phone" class="form-control" id="phone">
                     </div>
                     <div class="form-group">
-                        <label for="message-text" name="password" class="control-label">密码</label>
-                        <input class="form-control" id="password"></input>
+                        <label for="password"  class="control-label">密码</label>
+                        <input name="password" class="form-control" id="password">
                     </div>
                     <div class="form-group">
-                        <label for="message-text" class="control-label">角色</label>
-                        <select class="form-control" name="level" id="level">
+                        <label for="role" class="control-label">角色</label>
+                        <select class="form-control" name="role" id="role">
                             <option value="0">普通会员</option>
                             <option value="1">公司会员</option>
                             <option value="2">管理员</option>
@@ -103,11 +103,11 @@
 
 <script>
 function getDataid(e) {
-    console.log(e.target.parentNode.parentNode.getAttribute('data_id'));
+    //console.log(e.target.parentNode.parentNode.getAttribute('data_id'));
     var username = e.target.parentNode.parentNode.childNodes.item(0).getAttribute("username");
     var phone = e.target.parentNode.parentNode.childNodes.item(1).getAttribute("phone");
     var password = e.target.parentNode.parentNode.childNodes.item(2).getAttribute("password");
-    var level = e.target.parentNode.parentNode.childNodes.item(3).getAttribute("level");
+    var role = e.target.parentNode.parentNode.childNodes.item(3).getAttribute("role");
 
     var dataid = e.target.parentNode.parentNode.getAttribute('data_id');
 
@@ -115,11 +115,21 @@ function getDataid(e) {
     document.getElementById("username").value = username;
     document.getElementById("phone").value = phone;
     document.getElementById("password").value = password;
-    document.getElementById("level").value = level;
+    document.getElementById("role").value = role;
 
 }
 var el = document.getElementById("outside");
 el.addEventListener("click", getDataid.bind(this), false);
+</script>
+
+<script>
+    var dataid = null;
+function deleteData(e) {
+    dataid = e.target.parentNode.parentNode.getAttribute('data_id');
+    $.getJSON('de')
+}
+var el = document.getElementById("outside");
+el.addEventListener("click", deleteData.bind(this), false);
 </script>
 
 </body>

@@ -25,11 +25,13 @@
     return;
   }
 %>
-<c:if test="${currentUser.level == 1}"><h3>当前用户是${currentUser.username} 权限为${currentUser.level}</h3></c:if>
-<c:if test="${currentUser.level == 0}">
+<c:if test="${currentUser.role == 1}">
+    <h3>当前用户是${currentUser.username} 权限为${currentUser.role}</h3>
+</c:if>
+<c:if test="${currentUser.role == 0}">
     <% response.sendRedirect("../customer/index.jsp");%>
 </c:if>
-<c:if test="${currentUser.level == 2}">
+<c:if test="${currentUser.role == 2}">
     <% response.sendRedirect("../admin/index.jsp");%>
 </c:if>
 </body>

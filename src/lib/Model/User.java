@@ -9,22 +9,30 @@ import java.util.StringTokenizer;
 /**
  * Created by baron on 15-9-10.
  */
-public abstract class User {
+public class User {
+    private String dataid;
     private String password;
     private String phone;
     private String username;
-    private String level;
+    private String role;
 
     public User() {
         super();
     }
 
-    public User(String username, String password, String phone, String sex) {
+    public User(String username, String password, String phone) {
         this.username = username;
         this.password = password;
         this.phone = phone;
     }
 
+    public User(String username, String phone, String password, String role, String dataid) {
+        this.username = username;
+        this.phone = phone;
+        this.password = password;
+        this.role = role;
+        this.dataid = dataid;
+    }
     public User(String phone, String password) {
         this.phone = phone;
         this.password = password;
@@ -56,11 +64,19 @@ public abstract class User {
         this.username = username;
     }
 
-    public String getLevel() {
-        return level;
+    public String getRole() {
+        return role;
     }
 
-    public void setLevel(String level) {
-        this.level = level;
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getDataid() {
+        return dataid;
+    }
+
+    public void setDataid(String dataid) {
+        this.dataid = dataid;
     }
 }

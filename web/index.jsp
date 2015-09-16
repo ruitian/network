@@ -61,13 +61,13 @@
                 <% User currentUser = (User)session.getAttribute("currentUser");
                     if (currentUser != null) { %>
 
-                <c:if test="${currentUser.level == 0}">
+                <c:if test="${currentUser.role == 0}">
                     <li><a href="customer/index.jsp">欢迎${currentUser.username}</a></li>
                 </c:if>
-                <c:if test="${currentUser.level == 1}">
+                <c:if test="${currentUser.role == 1}">
                     <li><a href="company/index.jsp">欢迎${currentUser.username}</a></li>
                 </c:if>
-                <c:if test="${currentUser.level == 2}">
+                <c:if test="${currentUser.role == 2}">
                     <li><a href="admin/index.jsp">欢迎${currentUser.username}</a></li>
                 </c:if>
 
@@ -88,6 +88,18 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
+<%
+    String message = (String)request.getAttribute("message");
+    if(message != null) {
+%>
+<div class="alert alert-messages alert-success alert-dismissible" role="alert" >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    ${message}
+</div>
+<% } %>
 <% CompanyDao companyDao = new CompanyDao();%>
 <h2>
     <%=companyDao.companylist()%>

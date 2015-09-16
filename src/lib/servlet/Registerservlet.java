@@ -30,7 +30,6 @@ public class Registerservlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = new String(req.getParameter("username").getBytes("ISO-8859-1"), "UTF-8");
-        String sex = new String(req.getParameter("sex").getBytes("ISO-8859-1"), "UTF-8");
         String phone = new String(req.getParameter("phone").getBytes("ISO-8859-1"), "UTF-8");
         String password = new String(req.getParameter("password").getBytes("ISO-8859-1"), "UTF-8");
 
@@ -49,17 +48,17 @@ public class Registerservlet extends HttpServlet{
             req.getRequestDispatcher("register.jsp").forward(req, resp);
         }
 
-        User user = new Customer();
+        User user = new User();
         Connection con = null;
-
         user.setUsername(username);
-        ((Customer)user).setSex(sex);
         user.setPhone(phone);
         user.setPassword(password);
 
         try {
             con = sqlCon.getCon();
             userdao.register(con, user);
+            req.setAttribute("message", "注册成功,现在可以登陆了!");
+            resp.sendRedirect("index.jsp");
         } catch (Exception e) {
             e.printStackTrace();
         }

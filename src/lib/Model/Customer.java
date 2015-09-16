@@ -15,9 +15,8 @@ public class Customer extends User{
     }
 
     public Customer(String username, String password, String phone, String sex, String resume, String sex1) {
-        super(username, password, phone, sex);
+        super(username, password, phone);
         this.resume = resume;
-        sex = sex1;
     }
 
     public Customer(String phone, String password, String resume, String sex) {

@@ -8,37 +8,67 @@
     <script src="static/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 <div class="container">
     <%
         String error_name = (String)request.getAttribute("error_name");
         String error_phone = (String)request.getAttribute("error_phone");
     %>
-  <form class="col-md-6 col-md-offset-3" action="register" method="post">
-    <div class="form-group">
-      <label>姓名</label>
-      <input type="text" class="form-control" id="username" placeholder="Jane Doe" name="username">
-        <p>${error_name}</p>
-        <p id="name-mess"></p>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="logo col-md-2 col-md-offset-1" >
+                <a href="index.jsp"><img src="static/image/logo.png" width="170px" height="75px" alt=""/></a>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-      <label>手机号码</label>
-      <input type="text" class="form-control" id="phone" placeholder="Phone Number" name="phone">
-        <p>${error_phone}</p>
-        <p id="phone-mess"></p>
+    <div class="row">
+        <div class="reg_main col-md-8 col-md-offset-2">
+            <div class="reg_form">
+                <form action="register" class="form-group" method="post">
+                    <div>
+                        <span>用户名:</span>
+                        <div class="reg_out">
+                            <p class="member_icon3"></p>
+                            <input type="text" id="username" name="username" placeholder="用户名" require=""/>
+                        </div>
+                        <p id="name-mess"></p>
+                    </div>
+                    <div>
+                        <span>手机:</span>
+                        <div class="reg_out">
+                            <p class="member_icon4"></p>
+                            <input type="text" id="phone" name="phone" placeholder="手机号" require=""/>
+                        </div>
+                        <p id="phone-mess"></p>
+                    </div>
+                    <div>
+                        <span>密码:</span>
+                        <div class="reg_out">
+                            <p class="member_icon5"></p>
+                            <input type="password" id="password" name="password" placeholder="密码" require=""/>
+                        </div>
+                    </div>
+                    <div>
+                        <span>确认密码:</span>
+                        <div class="reg_out">
+                            <p class="member_icon6"></p>
+                            <input type="password" id="password2" name="password1" placeholder="确认密码" require="" onkeyup="validate()"/>
+                        </div>
+                        <p id="message" style="color:red;"></p>
+                    </div>
+                    <div>
+                        <span></span>
+                        <button type="submit" id="btn" class="btn col-md-6 col-md-offset-2" disabled="true"  onclick="check()">注册</button>
+                    </div>
+                </form>
+            </div>
+            <div class="reg_login">
+                <h1>已有登陆账号?</h1>
+                <p><a href="login.jsp">立即登陆>>></a></p>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-      <label>密码</label>
-      <input type="password" class="form-control" id="password" placeholder="Password" name="password">
-    </div>
-    <div class="form-group">
-      <label>确认密码</label>
-      <input type="password" class="form-control" id="password2" placeholder="Password" name="password1" onkeyup="validate()">
-    </div>
-      <p id="message" style="color:red;"></p>
-    <button type="submit" id="btn" class="btn btn-primary" disabled="true" onclick="check()">注册</button>
-  </form>
 </div>
-
 <script>
   function validate() {
     var passwd1 = document.getElementById("password").value;

@@ -16,7 +16,7 @@ public class AdminDao {
         Connection con = null;
         ResultSet rs = null;
         String str = "<table class=\"table table-bordered\" id=\"outside\">" +
-                "<tr><td>用户姓名</td><td>手机号</td><td>密码</td><td>角色</td></tr>";
+                "<tr><td>用户姓名</td><td>手机号</td><td>密码</td><td>权限</td></tr>";
         try {
             con = sqlcon.getCon();
             stmt = con.createStatement();
@@ -24,8 +24,9 @@ public class AdminDao {
             rs = stmt.executeQuery(sql);
             while(rs.next()) {
                 str = str + "<tr data_id=\"" + rs.getString("id") + "\"><td username=\""+ rs.getString("username") + "\"/>" + rs.getString("username") + "</td><td phone=\"" + rs.getString("phone") + "\"/>" + rs.getString("phone") +
-                        "</td><td password=\"" + rs.getString("password") +"\"/>" + rs.getString("password") + "</td><td level=\"" + rs.getString("level") + "\"/>" + rs.getString("level") + "</td><td>" +
-                "<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModal\">编辑</button></td>"  ;
+                        "</td><td password=\"" + rs.getString("password") +"\"/>" + rs.getString("password") + "</td><td role=\"" + rs.getString("role") + "\"/>" + rs.getString("role") + "</td><td>" +
+                "<button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModal\">编辑</button><button class=\"btn btn-primary\">" +
+                        "删除</button></td>"  ;
             }
             return str + "</table>";
 
