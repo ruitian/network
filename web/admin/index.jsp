@@ -49,7 +49,9 @@
                 <div role="tabpanel" class="tab-pane" id="profile">
                     当前用户是${currentUser.username} 权限为${currentUser.role}
                 </div>
-                <div role="tabpanel" class="tab-pane" id="messages">...</div>
+                <div role="tabpanel" class="tab-pane" id="messages">
+                    <%=adminDao.getApply()%>
+                </div>
                 <div role="tabpanel" class="tab-pane" id="settings">...</div>
             </div>
         </div>
