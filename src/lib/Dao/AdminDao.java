@@ -5,6 +5,7 @@ import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by baron on 15-9-15.
@@ -35,4 +36,32 @@ public class AdminDao {
         }
         return str;
     }
+
+    public String getApply() throws SQLException {
+        Statement stmt = null;
+        SqlCon sqlcon = new SqlCon();
+        Connection con = null;
+        ResultSet rs = null;
+
+        String str = "<table class=\"table table-bordered\">" +
+                "<tr><td>用户名</td><td>申请信息</td><td>申请权限</td></tr>";
+        try {
+            con = sqlcon.getCon();
+            stmt = con.createStatement();
+            String sql = "select * from applymess" + ";";
+            rs = stmt.executeQuery(sql);
+            while(rs.next()) {
+                str = str + "<tr><td>" + rs.getString("apply_username") + "</td><td>" +
+                 rs.getString("apply_mess") + "</td><td>" + rs.getString("role") + "</td><td><form method=\"post\" action=\"../modify\">" +
+                        "<input name=\"dataid\" type=\"hidden\" value=\"" + rs.getString("apply_id") + "\"/>" +
+                        "<input type=\"hidden\" name=\"role\" value=\"" + rs.getString("role") + "\"/><button type=\"submit\" class=\"btn btn-primary\">通过</form></td></tr>";
+            }
+            return str + "</table>";
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return str;
+    }
+
 }
