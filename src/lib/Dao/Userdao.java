@@ -87,4 +87,33 @@ public class Userdao {
         }
         return null;
     }
+
+    public Apply deleteapply(Connection con, Apply user) throws SQLException {
+        PreparedStatement pst = null;
+        try {
+            String sql = "delete from applymess where apply_id = ?";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, user.getDataid());
+
+            pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public User modify(Connection con, User user) throws SQLException {
+        PreparedStatement pst = null;
+        try {
+            String sql = "update user set role = ? where id = ?";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, user.getRole());
+            pst.setString(2, user.getDataid());
+            pst.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
