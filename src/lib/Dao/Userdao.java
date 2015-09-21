@@ -129,4 +129,20 @@ public class Userdao {
         }
         return null;
     }
+
+    public User modifyprofile(Connection con, User user) throws SQLException {
+        PreparedStatement pst = null;
+        try {
+            String sql = "update user set username = ?, password = ? where id = ?";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, user.getUsername());
+            pst.setString(2, user.getPassword());
+            pst.setString(3, user.getDataid());
+            pst.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

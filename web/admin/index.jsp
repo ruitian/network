@@ -57,14 +57,6 @@
         </div>
     </div>
 </c:if>
-
-<c:if test="${currentUser.role == 0}">
-    <% response.sendRedirect("../customer/index.jsp");%>
-</c:if>
-<c:if test="${currentUser.role == 1}">
-    <% response.sendRedirect("../company/index.jsp");%>
-</c:if>
-
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -104,7 +96,12 @@
         </div>
     </div>
 </div>
-
+<c:if test="${currentUser.role == 0}">
+    <% response.sendRedirect("../customer/index.jsp");%>
+</c:if>
+<c:if test="${currentUser.role == 1}">
+    <% response.sendRedirect("../company/index.jsp");%>
+</c:if>
 <script>
 function getDataid(e) {
     //console.log(e.target.parentNode.parentNode.getAttribute('data_id'));
