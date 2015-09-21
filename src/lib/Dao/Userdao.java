@@ -116,4 +116,17 @@ public class Userdao {
         }
         return null;
     }
+
+    public User deleteuser(Connection con, User user) throws SQLException {
+        PreparedStatement pst = null;
+        try {
+            String sql = "delete from user where id = ?";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, user.getDataid());
+            pst.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
