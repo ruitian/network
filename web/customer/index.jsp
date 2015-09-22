@@ -88,7 +88,54 @@
                   </div>
               </div>
               <div role="tabpanel" class="tab-pane" id="messages">
-
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">编写我的简历</button>
+                  <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">查看修改简历</button>
+                  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                      <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                  <h4 class="modal-title" id="exampleModalLabel">My Resume</h4>
+                              </div>
+                              <div class="modal-body">
+                                  <form action="resume" method="post">
+                                      <input type="hidden" name="dataid" value="${currentUser.dataid}"/>
+                                      <div class="form-group">
+                                          <label for="message-text" class="control-label">简历内容:</label>
+                                          <textarea class="form-control" id="message-text" rows="20" name="resume"></textarea>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                          <button type="submit" class="btn btn-primary">保存</button>
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                      <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                  <h4 class="modal-title" id="exampleModalLabel">My Resume</h4>
+                              </div>
+                              <div class="modal-body">
+                                  <form action="customer/resume" method="post">
+                                      <input type="hidden" name="dataid" value="${currentUser.dataid}"/>
+                                      <div class="form-group">
+                                          <label for="message-text" class="control-label">简历内容:</label>
+                                          <textarea class="form-control" id="message-text" rows="20" name="resume">${resume.resume}</textarea>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                          <button type="submit" class="btn btn-primary">保存修改</button>
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
               </div>
               <div role="tabpanel" class="tab-pane" id="settings">...</div>
           </div>
