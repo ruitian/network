@@ -62,7 +62,14 @@
                     if (currentUser != null) { %>
 
                 <c:if test="${currentUser.role == 0}">
-                    <li><a href="customer/index.jsp">欢迎${currentUser.username}</a></li>
+                    <li>
+                        <a><form action="updateresume" method="post">
+                        <input type="hidden" name="dataid" value="${currentUser.dataid}"/>
+                        <input type="submit" value="欢迎${currentUser.username}"/>
+                        </form>
+                        </a>
+                    </li>
+
                 </c:if>
                 <c:if test="${currentUser.role == 1}">
                     <li><a href="company/index.jsp">欢迎${currentUser.username}</a></li>
