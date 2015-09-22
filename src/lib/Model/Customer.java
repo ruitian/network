@@ -4,23 +4,21 @@ package lib.Model;
  * Created by baron on 15-9-14.
  */
 public class Customer extends User{
+    private String dataid;
     private String resume;
     private String sex;
 
     public Customer() {
         super();
     }
-    public Customer(String phone, String password) {
-        super(phone, password);
-    }
 
-    public Customer(String username, String password, String phone, String sex, String resume, String sex1) {
-        super(username, password, phone);
+    public Customer(String dataid, String resume) {
+        this.dataid = dataid;
         this.resume = resume;
     }
 
-    public Customer(String phone, String password, String resume, String sex) {
-        super(phone, password);
+    public Customer(String dataid, String resume, String sex) {
+        this.dataid = dataid;
         this.resume = resume;
         this.sex = sex;
     }
@@ -39,5 +37,13 @@ public class Customer extends User{
 
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    public String getDataid() {
+        return dataid;
+    }
+
+    public void setDataid(String dataid) {
+        this.dataid = dataid;
     }
 }

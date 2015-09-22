@@ -15,6 +15,7 @@ public class User {
     private String phone;
     private String username;
     private String role;
+    private String resume;
 
     public User() {
         super();
@@ -78,5 +79,13 @@ public class User {
 
     public void setDataid(String dataid) {
         this.dataid = dataid;
+    }
+
+    public String getResume() {
+        return resume;
+    }
+
+    public void setResume(String resume) {
+        this.resume = resume;
     }
 }

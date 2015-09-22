@@ -44,7 +44,7 @@ public class Loginservlet extends HttpServlet{
             return;
         }
 
-        User user = new Customer(phone, password);
+        User user = new User(phone, password);
         Connection con = null;
 
         try {
