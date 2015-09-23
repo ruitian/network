@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="lib.Model.User" %>
+<%@ page import="lib.Dao.CompanyDao" %>
+<%@ page import="lib.Model.Company" %>
 <%--
   Created by IntelliJ IDEA.
   User: baron
@@ -31,7 +33,7 @@
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">添加公司信息</a></li>
             <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">个人资料</a></li>
-            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">招聘情况</a></li>
             <li role="presentation"><a href="../index.jsp"sss>返回首页</a></li>
         </ul>
 
@@ -101,7 +103,10 @@
                     </div>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane" id="messages">...</div>
+            <div role="tabpanel" class="tab-pane" id="messages">
+                <% CompanyDao companyDao = new CompanyDao(); %>
+                <%=companyDao.getcustomer(((User)session.getAttribute("currentUser")).getDataid())%>
+            </div>
         </div>
 
     </div>

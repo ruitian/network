@@ -80,4 +80,27 @@ public class CompanyDao {
         }
         return str;
     }
+
+    public String getcustomer(String id) throws SQLException {
+        Statement stmt = null;
+        SqlCon sqlcon = new SqlCon();
+        Connection con = null;
+        ResultSet rs = null;
+        String str = "<div class=\"col-md-8 col-md-offset-2\"><table class=\"table table-bordered\">" +
+                "<tr><td>姓名</td><td>简历</td></tr>";
+        try {
+            con = sqlcon.getCon();
+            stmt = con.createStatement();
+            String sql = "select username , resume from user where id = (select customer_id from user_company where company_id=" + id + ")";
+            rs = stmt.executeQuery(sql);
+
+            while(rs.next()) {
+                str = str + "<tr><td>" + rs.getString("username") +"</td><td>" +rs.getString("resume") + "</td></tr>";
+            }
+            return str + "</table></div>";
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return str;
+    }
 }
