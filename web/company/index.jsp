@@ -40,6 +40,7 @@
             <div role="tabpanel" class="tab-pane active" id="home">
                 <div class="modal-body">
                     <form class="col-md-6" action="companyinfo" method="post">
+                        <input type="hidden" value="${currentUser.dataid}" name="dataid"/>
                         <div class="form-group">
                             <label for="comname" class="control-label">公司名称</label>
                             <input type="text" name="comname" class="form-control" id="comname">
