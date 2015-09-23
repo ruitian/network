@@ -47,7 +47,7 @@ public class modifyprofile extends HttpServlet{
             userdao.modifyprofile(con, user);
             req.setAttribute("message", "以成功修改,请重新登陆!");
             req.getRequestDispatcher("customer/index.jsp").forward(req, resp);
-            resp.sendRedirect("customer/index.jsp");
+            resp.sendRedirect("index.jsp");
         } catch (Exception e) {
             e.printStackTrace();
         }

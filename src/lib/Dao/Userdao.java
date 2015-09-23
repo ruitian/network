@@ -1,11 +1,9 @@
 package lib.Dao;
 
 import lib.Model.Apply;
-import lib.Model.Company;
 import lib.Model.Customer;
 import lib.Model.User;
 
-import java.awt.geom.CubicCurve2D;
 import java.sql.Connection;
 import java.sql.PreparedStatement;// 通过PreparedStatement进行数据库的增删改查
 import java.sql.ResultSet;

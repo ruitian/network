@@ -36,4 +36,19 @@ public class CompanyDao {
         }
         return str;
     }
+
+    public Company addcompany(Connection con, Company com) throws SQLException {
+        PreparedStatement pst = null;
+
+        try {
+            String sql = "insert into company (com_name, com_desc) values (?,?)";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, com.getCom_name());
+            pst.setString(2, com.getCom_desc());
+            pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
