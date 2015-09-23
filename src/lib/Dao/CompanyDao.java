@@ -68,8 +68,10 @@ public class CompanyDao {
             while (rs.next()) {
                 str = str + "<tr><td>" + rs.getString("com_name")+ "</td><td>" +
                         rs.getString("com_desc") + "</td><td>" +
-                        "<form action=\"sendresume\" method=\"post\">" +
-                         "<input type=\"hidden\" value=\"\"/>"
+                        "<form action=\"../sendresume\" method=\"post\">" +
+                         "<input name=\"company_id\" type=\"hidden\" value=\"" + rs.getString("company_id")+"\"/>" +
+                        "<input id=\"user_id\" name=\"user_id\" type=\"hidden\" value=\"\">" +
+                        "<button class=\"btn btn-default\" type=\"submit\" onclick=\"getid()\">投递</button>"
                         + "</form></td></tr>";
             }
             return str + "</table></div>";

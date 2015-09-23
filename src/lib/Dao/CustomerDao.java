@@ -1,5 +1,6 @@
 package lib.Dao;
 
+import lib.Model.Relation;
 import lib.Model.User;
 
 import java.sql.*;
@@ -26,5 +27,19 @@ public class CustomerDao {
             e.printStackTrace();
         }
         return resume;
+    }
+
+    public Relation sendresume(Connection con, Relation rel) throws SQLException{
+        PreparedStatement pst = null;
+        try {
+            String sql = "insert into user_company (customer_id, company_id) values(?,?)";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, rel.getCustomer_id());
+            pst.setString(2, rel.getCompany_id());
+            pst.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

@@ -25,6 +25,7 @@ public class Userdao {
 
             if (rs.next()) {
                 resultUser = new User();
+                resultUser.setResume(rs.getString("resume"));
                 resultUser.setDataid(rs.getString("id"));
                 resultUser.setUsername(rs.getString("username"));
                 resultUser.setPhone(rs.getString("phone"));

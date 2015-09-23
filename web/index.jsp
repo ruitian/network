@@ -63,11 +63,12 @@
 
                 <c:if test="${currentUser.role == 0}">
                     <li>
-                        <a><form action="updateresume" method="post">
-                        <input type="hidden" name="dataid" value="${currentUser.dataid}"/>
-                        <input type="submit" value="欢迎${currentUser.username}"/>
-                        </form>
-                        </a>
+                        <%--<a><form action="updateresume" method="post">--%>
+                        <%--<input type="hidden" name="dataid" value="${currentUser.dataid}"/>--%>
+                        <%--<input type="submit" value="欢迎${currentUser.username}"/>--%>
+                        <%--</form>--%>
+                        <%--</a>--%>
+                            <a href="customer/index.jsp">欢迎${currentUser.username}</a>
                     </li>
 
                 </c:if>

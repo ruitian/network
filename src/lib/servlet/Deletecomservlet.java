@@ -28,7 +28,7 @@ public class Deletecomservlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String dataid = new String(req.getParameter("dataid").getBytes("ISO-8859-1"), "UTF-8");
+        String dataid = new String(req.getParameter("data/id").getBytes("ISO-8859-1"), "UTF-8");
 
         Company com = new Company();
         Connection con = null;

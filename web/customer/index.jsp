@@ -7,6 +7,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="lib.Model.User" %>
+<%@ page import="lib.Model.Customer" %>
+<%@ page import="lib.Dao.CompanyDao" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -27,12 +29,13 @@
   %>
   <c:if test="${currentUser.role == 0}">
     <div class="container">
+        <input type="hidden" value="${currentUser.dataid}" id="data_id"/>
       <div>
           <!-- Nav tabs -->
           <ul class="nav nav-tabs" role="tablist">
               <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">个人资料</a></li>
               <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">我的简历</a></li>
-              <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+              <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">投递简历</a></li>
               <li role="presentation"><a href="../index.jsp">返回首页</a></li>
 
           </ul>
@@ -88,6 +91,16 @@
                   </div>
               </div>
               <div role="tabpanel" class="tab-pane" id="messages">
+                  <%
+                      String resume = (String)session.getAttribute("resume");
+                      if (resume != null) {
+                  %>
+                  <div class="container">
+                      <div class="row" style="width: 200px; height: 300px;">
+                              ${resume}
+                      </div>
+                  </div>
+                  <% }%>
                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1">编写我的简历</button>
                   <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">查看修改简历</button>
                   <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -98,8 +111,8 @@
                                   <h4 class="modal-title" id="exampleModalLabel">My Resume</h4>
                               </div>
                               <div class="modal-body">
-                                  <form action="resume" method="post">
-                                      <input type="hidden" name="dataid" value="${currentUser.dataid}"/>
+                                  <form action="../resume" method="post">
+                                      <input type="hidden" id="dataid" name="dataid" value="${currentUser.dataid}"/>
                                       <div class="form-group">
                                           <label for="message-text" class="control-label">简历内容:</label>
                                           <textarea class="form-control" id="message-text" rows="20" name="resume"></textarea>
@@ -121,23 +134,27 @@
                                   <h4 class="modal-title" id="exampleModalLabel">My Resume</h4>
                               </div>
                               <div class="modal-body">
-                                  <form action="customer/resume" method="post">
+                                  <form action="../resume" method="post">
                                       <input type="hidden" name="dataid" value="${currentUser.dataid}"/>
                                       <div class="form-group">
                                           <label for="message-text" class="control-label">简历内容:</label>
-                                          <textarea class="form-control" id="message-text" rows="20" name="resume">${resume.resume}</textarea>
+                                          <textarea class="form-control" id="message-text" rows="20" name="resume">${resume}</textarea>
                                       </div>
                                       <div class="modal-footer">
                                           <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                                           <button type="submit" class="btn btn-primary">保存修改</button>
                                       </div>
                                   </form>
+
                               </div>
                           </div>
                       </div>
                   </div>
               </div>
-              <div role="tabpanel" class="tab-pane" id="settings">...</div>
+              <div role="tabpanel" class="tab-pane" id="settings">
+                  <% CompanyDao companyDao = new CompanyDao(); %>
+                  <%=companyDao.getCompany()%>
+              </div>
           </div>
       </div>
     </div>
@@ -151,5 +168,13 @@
   <c:if test="${currentUser.role == 2}">
       <% response.sendRedirect("../admin/index.jsp");%>
   </c:if>
+
+  <script>
+      function getid() {
+          var id = document.getElementById("data_id").value;
+          console.log(id);
+          document.getElementById("user_id").value = id;
+      }
+  </script>
 </body>
 </html>
