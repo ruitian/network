@@ -35,7 +35,7 @@
                 <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">用户管理</a></li>
                 <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">个人资料</a></li>
                 <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-                <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+                <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">公司信息管理</a></li>
                 <li role="presentation"><a href="../index.jsp">返回首页</a></li>
 
             </ul>
@@ -52,7 +52,9 @@
                 <div role="tabpanel" class="tab-pane" id="messages">
                     <%=adminDao.getApply()%>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="settings">...</div>
+                <div role="tabpanel" class="tab-pane" id="settings">
+                    <%=adminDao.getCompany()%>
+                </div>
             </div>
         </div>
     </div>

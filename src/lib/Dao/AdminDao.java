@@ -65,4 +65,28 @@ public class AdminDao {
         return str;
     }
 
+    public String getCompany() throws SQLException {
+        Statement stmt = null;
+        SqlCon sqlcon = new SqlCon();
+        Connection con = null;
+        ResultSet rs = null;
+        String str = "<table class=\"table table-bordered\" id=\"company\">" +
+                "<tr><td>公司名称</td><td>公司简介</td></tr>";
+        try {
+            con = sqlcon.getCon();
+            stmt = con.createStatement();
+            String sql = "select * from company" + ";";
+            rs = stmt.executeQuery(sql);
+            while(rs.next()) {
+                str = str +
+                        "<tr data_id=\"" + rs.getString("id") + "\"><td com_name=\""+ rs.getString("com_name") + "\"/>" + rs.getString("com_name") + "</td><td com_desc=\"" + rs.getString("com_desc") + "\"/>" + rs.getString("com_desc") +
+                        "</td><td><form action=\"../deletecompany\" method=\"post\"><input name=\"dataid\" type=\"hidden\" value=\"" + rs.getString("id") + "\"/><button class=\"btn btn-default\">删除</button></form></td></tr>";
+            }
+            return str + "</table>";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return str;
+    }
 }

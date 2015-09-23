@@ -5,6 +5,7 @@ package lib.Model;
  */
 public class Company{
 
+    private String dataid;
     private String com_desc;
     private String com_name;
     public Company() {
@@ -29,5 +30,13 @@ public class Company{
 
     public void setCom_desc(String com_desc) {
         this.com_desc = com_desc;
+    }
+
+    public String getDataid() {
+        return dataid;
+    }
+
+    public void setDataid(String dataid) {
+        this.dataid = dataid;
     }
 }

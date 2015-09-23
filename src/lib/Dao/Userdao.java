@@ -1,6 +1,7 @@
 package lib.Dao;
 
 import lib.Model.Apply;
+import lib.Model.Company;
 import lib.Model.Customer;
 import lib.Model.User;
 
@@ -155,6 +156,20 @@ public class Userdao {
             pst.setString(2, user.getDataid());
             pst.executeUpdate();
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Apply deletecompany(Connection con, Company com) throws SQLException {
+        PreparedStatement pst = null;
+        try {
+            String sql = "delete from company where id = ?";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, com.getDataid());
+
+            pst.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
